@@ -8,6 +8,7 @@ django = "~=3.2.6"
 django-crispy-forms = "*"
 crispy-bootstrap5 = "*"
 whitenoise = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
