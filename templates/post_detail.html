@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Django blog - {{ post.title }}{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-12 mt-3">
+        <div class="card border-primary">
+            <div class="card-header">
+                <h5>{{ post.title }}</h5>
+                <p class="text-muted mb-0">
+                    Published by <span class="">{{ post.author }} | {{ post.date }}</span>
+                </p>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ post.body }}</p>
+                <a href="{% url 'post_edit' post.pk %}">Edit Post</a> |
+                <a href="{% url 'post_delete' post.pk %}">X Delete Post</a>
+            </div>
+            <div class="card-footer">
+                <h6 class="font-weight-bold text-decoration-underline">Comments</h6>
+                {% for comment in post.comments.all %}
+                <p class="mb-0">
+                    <span class="text-primary">{{ comment.author }} &middot;</span>&nbsp;&nbsp;{{ comment }}&middot
+                    <span class="text-muted">{{ comment.created }}</span>
+                </p>
+                {% empty %}
+                <p class="text-muted">There are no comments yet.</p>
+                {% endfor %}
+                <form method="POST">{% csrf_token %}
+                    {{ comment_form|crispy }}
+                    <button class="btn btn-success" type="submit">Add Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
