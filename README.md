@@ -1,5 +1,5 @@
 # Blog
-This is a minimalistic blog website that can perform CRUD operation created using django's generic class based view as it requires shorter codes
+This is a minimalistic blog website that can perform CRUD operation. It was created using django's generic class based view as it requires shorter codes
 
 ## Features
 - Account creation and login (Authentication)
